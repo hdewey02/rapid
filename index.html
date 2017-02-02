@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app='tabApp'>
+  <head>
+
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>New Tab</title>
+
+  </head>
+
+  <body ng-controller='tabController'>
+
+    <div class='topRight'>
+      <h1 id='date'>{{date.month + "/" + date.day + "/" + date.year}}</h1>
+      <h1 id='clock'>{{time}}</h1>
+    </div>
+
+    <div class='center'>
+      <h1 id='school'>{{school}}</h1>
+    </div>
+
+    <div class='topLeft'>
+      <h1 id='linkTitle'>Links</h1>
+      <div id='links_loud' class='linkBox'>
+        <ul class='links loud' ng-repeat='links_loud in links_louds'>
+          <li><a target="_blank" href="{{links_loud.url}}">{{links_loud.name}}</a></li>
+        </ul>
+      </div>
+      <div id='links_quiet' class='linkBox'>
+
+        <p class='header'>Google Classroom</p>
+        <ul class='links' ng-repeat='classroomLink in classroomLinks'>
+          <li><a target="_blank" href="{{classroomLink.url}}">{{classroomLink.name}}</a></li>
+        </ul>
+
+        <p class='header'>Google Drive</p>
+        <ul class='links' ng-repeat='driveLink in driveLinks'>
+          <li><a target="_blank" href="{{driveLink.url}}">{{driveLink.name}}</a></li>
+        </ul>
+
+        <p class='header'>Other</p>
+        <ul class='links' ng-repeat='links_quiet in links_quiets'>
+          <li><a target="_blank" href="{{links_quiet.url}}">{{links_quiet.name}}</a></li>
+        </ul>
+
+      </div>
+    </div>
+
+    <div class='bottomRight'>
+
+      <h3 id='todoTitle'>To-do</h3>
+
+      <form ng-submit="todoAdd()">
+        <input type="text" ng-model="todoInput" size="50" placeholder="Add New" id='todoInput' autocomplete="off">
+        <input type="submit" value="Add New" id='submitNew'>
+      </form>
+
+      <br>
+
+      <div ng-repeat="x in shownList" id='todoList'>
+        <input class='checkbox' type="checkbox" ng-model="x.done"> <span id='tasks' ng-bind="x.todoText"> </span>
+      </div>
+
+      <p><button ng-click="remove()" id='removeTodo'>Remove marked</button></p>
+    </div>
+
+  </body>
+
+  <script type="text/javascript" src="js/app.js"></script>
+</html>
